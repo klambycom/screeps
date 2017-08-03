@@ -2,6 +2,7 @@ var roles = {
   "harvester": require("role.harvester"),
   "upgrader": require("role.upgrader"),
   "builder": require("role.builder"),
+  "warrior": require("role.warrior")
 };
 
 function spawn(spawn_name, role, body, amount) {
@@ -35,7 +36,8 @@ module.exports.loop = function () {
 
   spawn("Spawn1", "harvester", [WORK, CARRY, MOVE], 2);
   spawn("Spawn1", "upgrader", [WORK, CARRY, CARRY, MOVE], 5);
-  spawn("Spawn1", "builder", [WORK, CARRY, CARRY, MOVE], 4);
+  spawn("Spawn1", "builder", [WORK, CARRY, CARRY, MOVE], 2);
+  spawn("Spawn1", "warrior", [ATTACK, ATTACK, MOVE, MOVE, MOVE, TOUGH, TOUGH, TOUGH, TOUGH], 2);
 
   for(var name in Game.creeps) {
     var creep = Game.creeps[name];
@@ -46,4 +48,5 @@ module.exports.loop = function () {
   visual(roomVisual, "👨‍🌾", "harvester", 1);
   visual(roomVisual, "👨‍🔧", "upgrader", 2);
   visual(roomVisual, "👷", "builder", 3);
+  visual(roomVisual, "👮", "warrior", 4);
 }
