@@ -33,7 +33,7 @@ function visual(roomVisual, icon, name, row) {
 module.exports.loop = function () {
   freeMemory();
 
-  spawn("Spawn1", "harvester", [WORK, CARRY, MOVE], 1);
+  spawn("Spawn1", "harvester", [WORK, CARRY, MOVE], 2);
   spawn("Spawn1", "upgrader", [WORK, CARRY, MOVE], 5);
   spawn("Spawn1", "builder", [WORK, CARRY, MOVE], 4);
 
