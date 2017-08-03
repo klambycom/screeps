@@ -34,8 +34,8 @@ module.exports.loop = function () {
   freeMemory();
 
   spawn("Spawn1", "harvester", [WORK, CARRY, MOVE], 2);
-  spawn("Spawn1", "upgrader", [WORK, CARRY, MOVE], 5);
-  spawn("Spawn1", "builder", [WORK, CARRY, MOVE], 4);
+  spawn("Spawn1", "upgrader", [WORK, CARRY, CARRY, MOVE], 5);
+  spawn("Spawn1", "builder", [WORK, CARRY, CARRY, MOVE], 4);
 
   for(var name in Game.creeps) {
     var creep = Game.creeps[name];
