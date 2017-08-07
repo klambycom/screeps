@@ -68,7 +68,7 @@ module.exports.loop = function () {
   spawn("Spawn1", "upgrader", [WORK, WORK, CARRY, CARRY, MOVE, MOVE], 2);
   spawn("Spawn1", "builder", [WORK, WORK, CARRY, CARRY, MOVE, MOVE], 2);
   spawn("Spawn1", "warrior", [ATTACK, ATTACK, MOVE, MOVE, MOVE, MOVE, TOUGH, TOUGH, TOUGH, TOUGH], 0);
-  spawn("Spawn1", "repairer", [WORK, CARRY, MOVE, MOVE, MOVE], 2);
+  spawn("Spawn1", "repairer", [WORK, CARRY, MOVE, MOVE, MOVE], 1);
 
   // Run code for creeps
   for(var name in Game.creeps) {
