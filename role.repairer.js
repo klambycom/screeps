@@ -1,15 +1,4 @@
-var roleUpgrader = {
-  body: {
-    300: [WORK, CARRY, MOVE], // Cost: 200
-    350: [WORK, CARRY, MOVE],
-    400: [WORK, CARRY, MOVE, MOVE], // Cost: 250
-    450: [WORK, CARRY, MOVE, MOVE],
-    500: [WORK, CARRY, CARRY, MOVE, MOVE], // Cost: 300
-    550: [WORK, CARRY, CARRY, MOVE, MOVE],
-    600: [WORK, WORK, CARRY, CARRY, MOVE, MOVE], // Cost: 400
-    650: [WORK, WORK, CARRY, CARRY, MOVE, MOVE]
-  },
-
+module.exports = {
   run: function(creep) {
     if(creep.memory.fueling) {
       //var sources = creep.room.find(FIND_SOURCES);
@@ -23,12 +12,18 @@ var roleUpgrader = {
       creep.memory.fueling = creep.carry.energy < creep.carryCapacity;
     }
     else {
-      if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-        creep.moveTo(creep.room.controller);
+      const targets = creep.room.find(FIND_STRUCTURES, {
+        filter: (s) => s.hits < s.hitsMax
+      });
+      targets.sort((a, b) => a.hits - b.hits);
+
+      if (targets.length > 0) {
+        if (creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
+          creep.moveTo(targets[0]);
+        }
       }
+
       creep.memory.fueling = creep.carry.energy == 0;
     }
   }
 };
-
-module.exports = roleUpgrader;
