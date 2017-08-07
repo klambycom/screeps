@@ -10,7 +10,8 @@ var roleHarvester = {
       let targets = creep.room.find(FIND_STRUCTURES, {
         filter: (structure) => {
           return (structure.structureType == STRUCTURE_EXTENSION ||
-                  structure.structureType == STRUCTURE_SPAWN) &&
+                  structure.structureType == STRUCTURE_SPAWN ||
+                  structure.structureType == STRUCTURE_TOWER) &&
                   structure.energy < structure.energyCapacity;
         }
       });
@@ -20,7 +21,11 @@ var roleHarvester = {
         }
       }
       else {
-        creep.moveTo(Game.spawns["Spawn1"]);
+        //creep.moveTo(Game.spawns["Spawn1"]);
+        var source = creep.pos.findClosestByPath(FIND_SOURCES, {algorithm: "astar"});
+        if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
+          creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
+        }
       }
     }
   }
